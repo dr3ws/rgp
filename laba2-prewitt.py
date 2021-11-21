@@ -2,7 +2,7 @@ import cv2 as opencv
 import numpy as np
 
 # img_before = opencv.imread('img/2.png', opencv.IMREAD_GRAYSCALE)
-# img_before = opencv.imread('img/2-1.png', opencv.IMREAD_GRAYSCALE)
+# img_before = opencv.imread('img/2-11.png', opencv.IMREAD_GRAYSCALE)
 img_before = opencv.imread('img/image.png', opencv.IMREAD_GRAYSCALE)
 
 x = np.array([[-1, 0, 1],
