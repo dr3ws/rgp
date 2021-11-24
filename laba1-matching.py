@@ -47,12 +47,13 @@ def bringing_histogram(img_bef, img_aft):  # метод для приведен�
 
     img_new = (np.reshape(np_pixels[img_bef.ravel()], img_bef.shape)).astype(np.uint8)
     cdfunc(img_new)
+    plt.title('red-исходное, blue-целевое, orange-result')
     plt.show()
     opencv.imshow("Bringing histogram result", img_new)
 
 
-img_1 = opencv.imread('img/1-2.jpg', opencv.IMREAD_GRAYSCALE)  # исходное изображение
-img_2 = opencv.imread('img/1-1.jpg', opencv.IMREAD_GRAYSCALE)  # целевое изображение
+img_1 = opencv.imread('img/1-1.png', opencv.IMREAD_COLOR)  # исходное изображение
+img_2 = opencv.imread('img/1-2.png', opencv.IMREAD_COLOR)  # целевое изображение
 hist1, bins1 = np.histogram(img_1.ravel(), 256, [0, 255])
 hist2, bins2 = np.histogram(img_2.ravel(), 256, [0, 255])
 plt.plot(hist1, 'b')
