@@ -23,6 +23,6 @@ cdf2 = hist2.cumsum()
 plt.plot(hist2, 'g')
 
 img_result = opencv.hconcat([img_before, img_after])
-opencv.imshow("Result", img_result)
+opencv.imshow('Result', img_result)
 plt.show()
 opencv.waitKey(0)

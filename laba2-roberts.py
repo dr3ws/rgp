@@ -19,5 +19,5 @@ img_after = img_after / np.max(img_after) * 255
 img_after = img_after.astype('uint8')
 
 img_result = opencv.hconcat([i, img_after])
-opencv.imshow("Result Roberts", img_result)
+opencv.imshow('Result Roberts', img_result)
 opencv.waitKey(0)

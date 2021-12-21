@@ -29,9 +29,10 @@ def cdfunc(img):  # comulative distribution function
     return cdf
 
 
-def bringing_histogram(img_bef, img_aft):  # метод для приведения гистограммы исх. изображения к целевому
-    H_i = cdfunc(img_bef)
-    H_t = cdfunc(img_aft)
+def matching_histogram(img__1, img__2):  # метод для приведения гистограммы исх. изображения к целевому
+    H_i = cdfunc(img__1)
+    H_t = cdfunc(img__2)
+
     pixels = []
 
     for H_i_index, H_i_color in enumerate(H_i):
@@ -45,23 +46,23 @@ def bringing_histogram(img_bef, img_aft):  # метод для приведен�
 
     np_pixels = np.array(pixels)
 
-    img_new = (np.reshape(np_pixels[img_bef.ravel()], img_bef.shape)).astype(np.uint8)
+    img_new = (np.reshape(np_pixels[img__1.ravel()], img__1.shape)).astype(np.uint8)
     cdfunc(img_new)
     plt.title('red-исходное, blue-целевое, orange-result')
     plt.show()
-    opencv.imshow("Bringing histogram result", img_new)
+    opencv.imshow('Matching histogram result', img_new)
 
 
-img_1 = opencv.imread('img/1-1.png', opencv.IMREAD_COLOR)  # исходное изображение
-img_2 = opencv.imread('img/1-2.png', opencv.IMREAD_COLOR)  # целевое изображение
+img_1 = opencv.imread('img/1-1.png', opencv.IMREAD_GRAYSCALE)  # исходное изображение
+img_2 = opencv.imread('img/1-2.png', opencv.IMREAD_GRAYSCALE)  # целевое изображение
 hist1, bins1 = np.histogram(img_1.ravel(), 256, [0, 255])
 hist2, bins2 = np.histogram(img_2.ravel(), 256, [0, 255])
-plt.plot(hist1, 'b')
-plt.plot(hist2, 'r')
+plt.plot(hist1, 'r')
+plt.plot(hist2, 'b')
 plt.title('Histogram:')
 plt.show()
 
-opencv.imshow("img_1", img_1)
-opencv.imshow("img_2", img_2)
-bringing_histogram(img_1, img_2)
+opencv.imshow('img_1', img_1)
+opencv.imshow('img_2', img_2)
+matching_histogram(img_1, img_2)
 opencv.waitKey(0)
