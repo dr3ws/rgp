@@ -146,7 +146,7 @@ def nl_means_filter(image, sigm, patch_big, patch_small):  # 7 3
 
 def writeres(noisy):
     print('\nGaussian:')
-    for sigma in range(3, 15, 3):
+    for sigma in range(1, 6, 1):
         GF = gaussian_filter(noisy, 6, sigma)
         opencv.imwrite('img/3/gaussian/s=' + str(sigma) + '.jpg', GF)
         print('σ =', sigma, '\tMAE =', calc_diff(noisy, GF))
@@ -216,4 +216,4 @@ opencv.imwrite('img/3/img_source.jpg', img_before)
 opencv.imwrite('img/3/img_noise.jpg', noise)
 
 # writeres(noise)
-comparison(img_before)
+# comparison(img_before)

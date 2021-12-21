@@ -33,24 +33,27 @@ def matching_histogram(img__1, img__2):  # метод для приведени�
     H_i = cdfunc(img__1)
     H_t = cdfunc(img__2)
 
-    pixels = []
+    new_hist = np.zeros_like(H_i)
+    new_img = np.zeros_like(img__2)
 
     for H_i_index, H_i_color in enumerate(H_i):
         min_difference = 257
         index = 0
-        for H_t_index, H_t_color in enumerate(H_t[H_i_index:]):
+        for H_t_index, H_t_color in enumerate(H_t):
             if abs(int(H_i_color) - H_t_color) <= min_difference:
                 min_difference = abs(int(H_i_color) - H_t_color)
                 index = H_t_index
-        pixels.append(H_t[index])
+        new_hist[H_i_index] = index
 
-    np_pixels = np.array(pixels)
+    for x in range(img__1.shape[0]):
+        for y in range(img__1.shape[1]):
+            val = int(img__1[x, y])
+            new_img[x, y] = new_hist[val]
 
-    img_new = (np.reshape(np_pixels[img__1.ravel()], img__1.shape)).astype(np.uint8)
-    cdfunc(img_new)
+    cdfunc(new_img)
     plt.title('red-исходное, blue-целевое, orange-result')
     plt.show()
-    opencv.imshow('Matching histogram result', img_new)
+    opencv.imshow('Matching histogram result', new_img)
 
 
 img_1 = opencv.imread('img/1-1.png', opencv.IMREAD_GRAYSCALE)  # исходное изображение

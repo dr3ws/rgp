@@ -2,7 +2,7 @@ import cv2 as opencv
 import numpy as np
 
 
-def dilation(a_, b_):  # делитация
+def dilation(a_, b_):  # дилатация
     B_h, B_w = b_.shape
     img = np.copy(a_)
     target_row, target_col = np.where(a_ == 255)
